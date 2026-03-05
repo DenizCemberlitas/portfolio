@@ -174,3 +174,65 @@ article img {
   border: 1px solid #222;
   margin: 20px 0;
 }
+
+/* GitHub Chart */
+#github-container {
+  max-width: 900px;
+  position: relative;
+}
+
+#github-chart {
+  display: flex;
+  gap: 3px;
+}
+
+.chart-woche {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.chart-tag {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: opacity 0.1s;
+}
+
+.chart-tag:hover {
+  opacity: 0.7;
+}
+
+.level-0 { background-color: #1a1a1a; }
+.level-1 { background-color: #0e4429; }
+.level-2 { background-color: #006d32; }
+.level-3 { background-color: #26a641; }
+.level-4 { background-color: #39d353; }
+
+#github-tooltip {
+  display: none;
+  position: fixed;
+  background-color: #2a2a2a;
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  border: 1px solid #444;
+  pointer-events: none;
+  z-index: 100;
+}
+
+#github-monate {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 4px;
+  padding-left: 0;
+}
+
+.monat-label {
+  font-size: 0.75rem;
+  color: #888888;
+  min-width: 12px;
+}
