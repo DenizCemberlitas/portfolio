@@ -101,3 +101,48 @@ section h2 {
 .projekt-karte a:hover {
     text-decoration: underline;
 }
+
+/* Blog Post Karten */
+#post-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+}
+
+a.post-karte {
+    background-color: #1a1a1a;
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 25px;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+}
+
+a.post-karte:hover {
+  border-color: #444;
+}
+
+a.post-karte .post-datum {
+  color: #888888;
+  font-size: 0.85rem;
+}
+
+a.post-karte h3 {
+  color: #ffffff;
+  margin: 8px 0 10px 0;
+  font-size: 1.1rem;
+}
+
+a.post-karte p {
+  color: #888888;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 15px 0;
+}
+
+a.post-karte .post-link {
+  color: #4a9eff;
+  font-size: 0.9rem;
+}

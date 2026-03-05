@@ -22,3 +22,18 @@ async function loadRepos() {
     })
 }
 loadRepos();
+
+function loadNav(){
+    const nav = document.querySelector("nav");
+    nav.innerHTML = `
+        <span class="logo">Deniz</span>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#projekte">Projekte</a></li>
+            <li><a href="index.html#github">GitHub</a></li>
+            <li><a href="blog.html">Homelab</a></li>
+        </ul>
+    `;
+}
+
+loadNav();
