@@ -66,3 +66,38 @@ section h2 {
     color: #ffffff;
     margin: 0 0 40px 0;
 }
+
+/* Projekt Karten */
+#projekte-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.projekt-karte {
+    background-color: #1a1a1a;
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 25px;
+}
+
+.projekt-karte h3 {
+    color: #ffffff;
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+}
+.projekt-karte p {
+    color: #888888;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0 0 20px 0;
+}
+.projekt-karte a {
+    color: #4a9eff;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.projekt-karte a:hover {
+    text-decoration: underline;
+}
