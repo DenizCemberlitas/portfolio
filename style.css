@@ -54,3 +54,15 @@ header p {
     color: #888888;
     line-height: 1.6;
 }
+
+/* Sektionen */
+section {
+    padding: 80px 60px;
+    border-top: 1px solid #222;
+}
+
+section h2 {
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin: 0 0 40px 0;
+}
