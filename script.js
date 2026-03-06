@@ -120,7 +120,7 @@ function loadNav(){
         <span class="logo">Deniz</span>
         <ul>
             <li><a href="${basis}index.html">Home</a></li>
-            <li><a href="${basis}index.html#projekte">Projekte</a></li>
+            <li><a href="${basis}projekte.html">Projekte</a></li>
             <li><a href="${basis}index.html#github">GitHub</a></li>
             <li><a href="${basis}blog.html">Homelab</a></li>
         </ul>
