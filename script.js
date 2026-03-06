@@ -111,14 +111,18 @@ async function ladeContributions() {
 ladeContributions();
 
 function loadNav(){
+
+    const inPosts = window.location.pathname.includes("/posts/");
+    const basis = inPosts ? "../" : "";
+
     const nav = document.querySelector("nav");
     nav.innerHTML = `
         <span class="logo">Deniz</span>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#projekte">Projekte</a></li>
-            <li><a href="index.html#github">GitHub</a></li>
-            <li><a href="blog.html">Homelab</a></li>
+            <li><a href="${basis}index.html">Home</a></li>
+            <li><a href="${basis}index.html#projekte">Projekte</a></li>
+            <li><a href="${basis}index.html#github">GitHub</a></li>
+            <li><a href="${basis}blog.html">Homelab</a></li>
         </ul>
     `;
 }
