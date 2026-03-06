@@ -175,6 +175,11 @@ article img {
   margin: 20px 0;
 }
 
+/* Content zentrieren */
+header, article {
+  margin: 0 auto;
+}
+
 /* GitHub Chart */
 #github-container {
   max-width: 900px;
@@ -330,4 +335,11 @@ footer span {
     gap: 15px;
     text-align: center;
   }
+}
+
+.bild-beschriftung {
+  color: #555555;
+  font-size: 0.85rem;
+  text-align: center;
+  margin-top: -10px !important;
 }

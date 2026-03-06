@@ -10,26 +10,45 @@
 
     <nav></nav>
 
-    <!-- Post Header -->
     <header>
       <span class="post-datum">März 2026</span>
       <h1>Proxmox Setup – Mein Homelab Grundgerüst</h1>
-      <p>Wie ich Proxmox installiert und meine ersten Container eingerichtet habe.</p>
+      <p>Wie ich Proxmox auf meinem HP Mini PC eingerichtet und meinen ersten Container zum Laufen gebracht habe.</p>
     </header>
 
-    <!-- Post Inhalt -->
     <article>
 
+      <h2>Die Hardware</h2>
+      <p>Als Basis für mein Homelab nutze ich einen HP Mini PC mit einem AMD Ryzen 5 PRO 4650GE und 32GB RAM. Der Mini PC ist ideal für ein Homelab – er verbraucht wenig Strom, ist leise und hat trotzdem genug Power für Virtualisierung.</p>
+
       <h2>Was ist Proxmox?</h2>
-      <p>Proxmox ist eine Open-Source Virtualisierungsplattform basierend auf Debian Linux. Sie erlaubt es, virtuelle Maschinen (KVM) und Container (LXC) auf einem einzigen Server zu betreiben.</p>
+      <p>Proxmox VE ist eine Open-Source Virtualisierungsplattform basierend auf Debian Linux. Sie erlaubt es, virtuelle Maschinen (KVM) und Container (LXC) auf einem einzigen Server zu betreiben und über ein übersichtliches Web-Interface zu verwalten.</p>
 
+      <a href="/posts/img-sources/proxmox-dashboard.png" target="_blank">
+        <img src="/posts/img-sources/proxmox-dashboard.png" alt="Proxmox Dashboard Übersicht" />
+      </a>
+      <p class="bild-beschriftung">Das Proxmox Web-Interface – zum Vergrößern klicken</p>
+      
       <h2>Installation</h2>
-      <p>Hier kannst du später deinen Text schreiben...</p>
+      <p>Die Installation läuft über ein bootfähiges ISO das man auf einen USB-Stick flasht. Nach dem Booten führt ein grafischer Installer durch den Prozess – Netzwerkkonfiguration, Hostname und Root-Passwort setzen. Nach ca. 10 Minuten ist Proxmox installiert und über den Browser unter <code>https://IP-ADRESSE:8006</code> erreichbar.</p>
 
-      <!-- Bild Beispiel -->
-      <!-- <img src="../bilder/proxmox-dashboard.png" alt="Proxmox Dashboard" /> -->
+      <h2>Erster Container – AMP Game Panel</h2>
+      <p>Mein erster laufender Container ist AMP (Application Management Panel) – ein Web-Interface zur Verwaltung von Game Servern. AMP läuft als LXC Container unter Proxmox und erlaubt es, verschiedene Game Server einfach zu installieren, starten und stoppen ohne sich per SSH einloggen zu müssen.</p>
+
+      <h2>Nächste Schritte</h2>
+      <p>Das Setup ist noch sehr überschaubar – ein Container, eine Anwendung. Die Pläne für die Zukunft sind weitere Container für z.B. ein eigenes DNS, Monitoring oder einen VPN Server. Jeder neue Dienst wird hier dokumentiert.</p>
 
     </article>
+
+    <footer>
+      <div id="footer-inhalt">
+        <span>© 2026 Deniz Cemberlitas</span>
+        <div id="footer-links">
+          <a href="https://github.com/DEIN-USERNAME" target="_blank">GitHub</a>
+          <a href="mailto:DEINE-EMAIL@gmail.com">Kontakt</a>
+        </div>
+      </div>
+    </footer>
 
     <script src="../script.js"></script>
   </body>
