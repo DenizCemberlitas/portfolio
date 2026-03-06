@@ -236,3 +236,52 @@ article img {
   color: #888888;
   min-width: 12px;
 }
+
+/* Responsive Design Mobile */
+@media (max-width: 768px) {
+
+  /* Navigation */
+  nav {
+    padding: 15px 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  nav ul {
+    gap: 15px;
+  }
+
+  /* Hero */
+  header {
+    padding: 60px 20px;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  /* Sektionen */
+  section {
+    padding: 60px 20px;
+  }
+
+  /* Projekte */
+  #projekte-container {
+    grid-template-columns: 1fr;
+  }
+
+  /* GitHub Chart */
+  #github-container {
+    overflow-x: auto;
+  }
+
+  #github-chart,
+  #github-monate {
+    min-width: 750px;
+  }
+  /* Article Blog Post */
+  article {
+    padding: 40px 20px;
+  }
+
+}
