@@ -387,3 +387,113 @@ footer span {
   text-align: center;
   margin-top: -10px !important;
 }
+
+/* === About Seite === */
+.about-wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.about-hero {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+/* Profilbild
+.about-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #4a9eff;
+  flex-shrink: 0;
+}
+*/
+
+.about-intro h1 {
+  margin: 0 0 0.4rem;
+  font-size: 1.8rem;
+}
+
+.about-intro p {
+  margin: 0;
+  color: #a1a1aa;
+  font-size: 1rem;
+}
+
+.about-section {
+  margin-bottom: 2rem;
+}
+
+.about-section h2 {
+  font-size: 1.1rem;
+  color: #4a9eff;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.about-section p {
+  line-height: 1.7;
+  color: #c0c0c0;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-tag {
+  background: #1e1e1e;
+  border: 1px solid #2c2c2e;
+  color: #e0e0e0;
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-left: 2px solid #2c2c2e;
+  padding-left: 1.2rem;
+}
+
+.timeline li {
+  margin-bottom: 1.2rem;
+  position: relative;
+}
+
+.timeline li::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: #4a9eff;
+  border-radius: 50%;
+  position: absolute;
+  left: -1.65rem;
+  top: 0.3rem;
+}
+
+.timeline .year {
+  font-size: 0.8rem;
+  color: #4a9eff;
+  margin-bottom: 0.2rem;
+}
+
+.timeline .title {
+  font-weight: 600;
+  color: #e0e0e0;
+}
+
+.timeline .desc {
+  font-size: 0.9rem;
+  color: #a1a1aa;
+  margin-top: 0.2rem;
+}

@@ -121,7 +121,7 @@ function loadNav(){
         <ul>
             <li><a href="${basis}index.html">Home</a></li>
             <li><a href="${basis}projekte.html">Projekte</a></li>
-            <li><a href="${basis}index.html#github">GitHub</a></li>
+            <li><a href="${basis}about.html">Über mich</a></li>
             <li><a href="${basis}blog.html">Homelab</a></li>
         </ul>
     `;
