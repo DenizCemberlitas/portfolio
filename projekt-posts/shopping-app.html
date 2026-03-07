@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping List App – Deniz</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+
+    <nav></nav>
+
+    <header>
+      <span class="post-datum">2025</span>
+      <h1>Shopping List Web App</h1>
+      <p>Eine Echtzeit-Einkaufsliste für meinen Familien-Spätkauf – gebaut mit Firebase und Vanilla JavaScript.</p>
+    </header>
+
+    <article>
+
+      <h2>Das Projekt</h2>
+      <p>Meine Eltern führen einen Spätkauf und mussten sich Einkaufslisten bisher per WhatsApp schicken. Das wollte ich einfacher machen. Die App erlaubt es, gemeinsam in Echtzeit eine Einkaufsliste zu verwalten – egal ob am Handy oder am PC. Entwickelt mit Unterstützung von KI (Claude von Anthropic).</p>
+
+      <h2>Features</h2>
+      <p>Produkte lassen sich nach Laden und Kategorie sortieren, damit man beim Einkaufen direkt weiß was wo zu holen ist. Über Google Login können mehrere Personen gleichzeitig auf dieselbe Liste zugreifen. Änderungen sind sofort auf allen Geräten sichtbar. Außerdem gibt es mehrere Listen, eine Undo-Funktion für versehentlich gelöschte Einträge, Drag & Drop zum Umsortieren und einen Dark / Light Mode.</p>
+
+      <h2>Was ich gelernt habe</h2>
+      <p>Das Projekt war mein erster richtiger Einstieg in Firebase. Ich habe gelernt wie Echtzeit-Datenbanken mit <code>onSnapshot()</code> funktionieren, wie man Google Authentication einbindet, wie man Firestore-Daten strukturiert und warum API-Keys niemals ins öffentliche Repository gehören.</p>
+
+      <h2>Screenshots</h2>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 1rem 0;">
+        <img src="img/shopping-1.png" alt="Hauptansicht der App" style="max-width: 220px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+        <img src="img/shopping-2.png" alt="Sidebar mit Listen-Verwaltung" style="max-width: 220px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+      </div>
+
+      <h2>Tech Stack</h2>
+      <p>HTML · CSS · JavaScript · Firebase Auth · Cloud Firestore · Firebase Hosting</p>
+
+      <h2>Links</h2>
+      <p>
+        <a href="https://shoppinglist-denz.web.app/" target="_blank" class="post-link">Live ansehen →</a>
+        &nbsp;&nbsp;
+        <a href="https://github.com/DenizCemberlitas/ShoppingListApp" target="_blank" class="post-link">GitHub Repo →</a>
+      </p>
+
+    </article>
+
+    <footer>
+      <div id="footer-inhalt">
+        <span>© 2026 Deniz Cemberlitas</span>
+        <div id="footer-links">
+          <a href="https://github.com/DenizCemberlitas" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>
