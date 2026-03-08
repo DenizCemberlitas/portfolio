@@ -10,7 +10,7 @@ async function loadRepos() {
 
     repos.forEach(repo => {
         const card = document.createElement("div");
-        card.classList.add("projekt-karte", "scroll-hidden");
+        card.classList.add("projekt-karte");
 
         card.innerHTML = `
             <h3>${repo.name}</h3>
@@ -18,8 +18,16 @@ async function loadRepos() {
             <a href="${repo.html_url}" target="_blank">Auf GitHub ansehen →</a>
         `;
 
-    container.appendChild(card);
-    })
+        container.appendChild(card);
+    });
+
+    // Karten erst beobachten nachdem sie im DOM sind
+    if (window._scrollObserver) {
+        container.querySelectorAll(".projekt-karte").forEach(el => {
+            el.classList.add("scroll-hidden");
+            window._scrollObserver.observe(el);
+        });
+    }
 }
 loadRepos();
 
@@ -129,21 +137,23 @@ function initScrollAnimations() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("scroll-visible");
-        observer.unobserve(entry.target); // einmal reingeglitten → fertig
+        observer.unobserve(entry.target);
       }
     });
   }, {
     threshold: 0.1
   });
 
-  // Alle animierbaren Elemente beobachten
+  // Global speichern damit loadRepos darauf zugreifen kann
+  window._scrollObserver = observer;
+
+  // Statische Elemente beobachten (ohne .projekt-karte – die kommen async)
   document.querySelectorAll(
-    "section, .post-karte, .projekt-karte, article h2, .about-section, .skill-tag"
+    "section, .post-karte, article h2, .about-section, .skill-tag"
   ).forEach(el => {
     el.classList.add("scroll-hidden");
     observer.observe(el);
   });
 }
 
-// Erst nach dem Laden starten damit Repo-Karten auch erfasst werden
 window.addEventListener("load", initScrollAnimations);
