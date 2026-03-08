@@ -19,15 +19,13 @@ async function loadRepos() {
         `;
 
         container.appendChild(card);
-    });
 
-    // Karten erst beobachten nachdem sie im DOM sind
-    if (window._scrollObserver) {
-        container.querySelectorAll(".projekt-karte").forEach(el => {
-            el.classList.add("scroll-hidden");
-            window._scrollObserver.observe(el);
-        });
-    }
+        // Karte sofort animieren wenn Observer schon bereit, sonst einfach sichtbar lassen
+        if (window._scrollObserver) {
+            card.classList.add("scroll-hidden");
+            window._scrollObserver.observe(card);
+        }
+    });
 }
 loadRepos();
 
@@ -40,7 +38,14 @@ async function ladeContributions() {
 
   const chart = document.getElementById("github-chart");
   const monateDiv = document.getElementById("github-monate");
-  const tooltip = document.getElementById("github-tooltip");
+
+  // Tooltip erstellen falls nicht im HTML vorhanden
+  let tooltip = document.getElementById("github-tooltip");
+  if (!tooltip) {
+    tooltip = document.createElement("div");
+    tooltip.id = "github-tooltip";
+    document.body.appendChild(tooltip);
+  }
 
   const wochen = [];
   let aktuelleWoche = [];
