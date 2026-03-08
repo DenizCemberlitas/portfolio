@@ -18,14 +18,8 @@ async function loadRepos() {
             <a href="${repo.html_url}" target="_blank">Auf GitHub ansehen →</a>
         `;
 
-        container.appendChild(card);
-
-        // Karte sofort animieren wenn Observer schon bereit, sonst einfach sichtbar lassen
-        if (window._scrollObserver) {
-            card.classList.add("scroll-hidden");
-            window._scrollObserver.observe(card);
-        }
-    });
+    container.appendChild(card);
+    })
 }
 loadRepos();
 
@@ -38,15 +32,9 @@ async function ladeContributions() {
 
   const chart = document.getElementById("github-chart");
   const monateDiv = document.getElementById("github-monate");
+  const tooltip = document.getElementById("github-tooltip");
 
-  // Tooltip erstellen falls nicht im HTML vorhanden
-  let tooltip = document.getElementById("github-tooltip");
-  if (!tooltip) {
-    tooltip = document.createElement("div");
-    tooltip.id = "github-tooltip";
-    document.body.appendChild(tooltip);
-  }
-
+  // Wochen gruppieren
   const wochen = [];
   let aktuelleWoche = [];
 
@@ -58,10 +46,12 @@ async function ladeContributions() {
     }
   });
 
+  // Letzte unvollständige Woche auch hinzufügen
   if (aktuelleWoche.length > 0) {
     wochen.push(aktuelleWoche);
   }
 
+ // Monats-Labels berechnen - nur EINMAL pro Monat
   let letzterMonat = "";
   let monatsStartIndex = 0;
 
@@ -69,6 +59,7 @@ async function ladeContributions() {
     const monat = new Date(woche[0].date).toLocaleString("de-DE", { month: "short" });
 
     if (monat !== letzterMonat) {
+      // Vorherigen Monat abschließen
       if (letzterMonat !== "") {
         const anzahlWochen = index - monatsStartIndex;
         const label = document.createElement("div");
@@ -82,6 +73,7 @@ async function ladeContributions() {
     }
   });
 
+  // Letzten Monat noch hinzufügen
   const letzteAnzahl = wochen.length - monatsStartIndex;
   const letztesLabel = document.createElement("div");
   letztesLabel.classList.add("monat-label");
@@ -89,6 +81,7 @@ async function ladeContributions() {
   letztesLabel.textContent = letzterMonat;
   monateDiv.appendChild(letztesLabel);
   
+  // Wochen rendern
   wochen.forEach((woche) => {
     const wochenDiv = document.createElement("div");
     wochenDiv.classList.add("chart-woche");
@@ -118,9 +111,9 @@ async function ladeContributions() {
 ladeContributions();
 
 function loadNav(){
-    const inSubfolder = window.location.pathname.includes("/posts/") || 
-                        window.location.pathname.includes("/projekt-posts/");
-    const basis = inSubfolder ? "../" : "";
+
+    const inPosts = window.location.pathname.includes("/posts/");
+    const basis = inPosts ? "../" : "";
 
     const nav = document.querySelector("nav");
     nav.innerHTML = `
@@ -135,30 +128,3 @@ function loadNav(){
 }
 
 loadNav();
-
-// === Scroll-Animationen ===
-function initScrollAnimations() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("scroll-visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.1
-  });
-
-  // Global speichern damit loadRepos darauf zugreifen kann
-  window._scrollObserver = observer;
-
-  // Statische Elemente beobachten (ohne .projekt-karte – die kommen async)
-  document.querySelectorAll(
-    "section, .post-karte, article h2, .about-section, .skill-tag"
-  ).forEach(el => {
-    el.classList.add("scroll-hidden");
-    observer.observe(el);
-  });
-}
-
-window.addEventListener("load", initScrollAnimations);
