@@ -1,7 +1,38 @@
+/* === Color Palette – Neon Noir ===
+  #000000 - Hintergrund
+  #1a1a1a - Zwischenton (Borders)
+  #2D2D2D - Cards / Sidebar / Nav
+  #2CFF05 - Akzent Neon Grün
+  #BF00FF - Akzent Neon Lila
+  #F0F0F0 - Primärtext
+  #aaaaaa - Sekundärtext
+*/
+
+:root {
+  --bg: #000000;
+  --bg-secondary: #2D2D2D;
+  --bg-tertiary: #1a1a1a;
+  --text: #F0F0F0;
+  --text-secondary: #aaaaaa;
+  --accent: #2CFF05;
+  --accent-hover: #25d904;
+  --accent-2: #BF00FF;
+  --danger: #ff3b30;
+  --danger-hover: #cc2f26;
+  --radius: 12px;
+  --shadow: 0 4px 16px rgba(44, 255, 5, 0.08);
+  --transition: 0.25s ease;
+}
+
 /* Body */
 body {
-    background-color: #0f0f0f;
-    color: #e0e0e0;
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Navigation */
@@ -10,13 +41,14 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 20px 60px;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid var(--bg-secondary);
+    background: var(--bg);
 }
 
 .logo {
     font-size: 1.3rem;
     font-weight: bold;
-    color: #ffffff;
+    color: var(--text);
 }
 
 nav ul {
@@ -28,12 +60,13 @@ nav ul {
 }
 
 nav ul a {
-    color: #aaaaaa;
+    color: var(--text-secondary);
     text-decoration: none;
+    transition: color var(--transition);
 }
 
 nav ul a:hover {
-    color: #ffffff;
+    color: var(--text);
 }
 
 /* Hero */
@@ -45,13 +78,13 @@ header {
 header h1 {
     font-size: 3rem;
     font-weight: bold;
-    color: #ffffff;
+    color: var(--text);
     margin: 0 0 20px 0;
 }
 
 header p {
     font-size: 1.1rem;
-    color: #888888;
+    color: var(--text-secondary);
     line-height: 1.6;
 }
 
@@ -63,32 +96,33 @@ header p {
 }
 
 .btn-primary {
-  background-color: #4a9eff;
-  color: #ffffff;
+  background-color: var(--accent);
+  color: #000000;
   padding: 12px 24px;
   border-radius: 6px;
   text-decoration: none;
   font-size: 0.95rem;
-  transition: background-color 0.2s;
+  font-weight: 600;
+  transition: background-color var(--transition);
 }
 
 .btn-primary:hover {
-  background-color: #3a8eef;
+  background-color: var(--accent-hover);
 }
 
 .btn-secondary {
-  border: 1px solid #444;
-  color: #aaaaaa;
+  border: 1px solid var(--bg-tertiary);
+  color: var(--text-secondary);
   padding: 12px 24px;
   border-radius: 6px;
   text-decoration: none;
   font-size: 0.95rem;
-  transition: border-color 0.2s, color 0.2s;
+  transition: border-color var(--transition), color var(--transition);
 }
 
 .btn-secondary:hover {
-  border-color: #888;
-  color: #ffffff;
+  border-color: var(--accent);
+  color: var(--text);
 }
 
 /* Hero Buttons Mobile */
@@ -102,12 +136,12 @@ header p {
 /* Sektionen */
 section {
     padding: 80px 60px;
-    border-top: 1px solid #222;
+    border-top: 1px solid var(--bg-secondary);
 }
 
 section h2 {
     font-size: 1.8rem;
-    color: #ffffff;
+    color: var(--text);
     margin: 0 0 40px 0;
 }
 
@@ -119,25 +153,25 @@ section h2 {
 }
 
 .projekt-karte {
-    background-color: #1a1a1a;
-    border: 1px solid #222;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--bg-tertiary);
     border-radius: 8px;
     padding: 25px;
 }
 
 .projekt-karte h3 {
-    color: #ffffff;
+    color: var(--text);
     margin: 0 0 10px 0;
     font-size: 1.1rem;
 }
 .projekt-karte p {
-    color: #888888;
+    color: var(--text-secondary);
     font-size: 0.9rem;
     line-height: 1.5;
     margin: 0 0 20px 0;
 }
 .projekt-karte a {
-    color: #4a9eff;
+    color: var(--accent);
     text-decoration: none;
     font-size: 0.9rem;
 }
@@ -155,39 +189,40 @@ section h2 {
 }
 
 a.post-karte {
-    background-color: #1a1a1a;
-    border: 1px solid #222;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--bg-tertiary);
     border-radius: 8px;
     padding: 25px;
     text-decoration: none;
     display: block;
     color: inherit;
+    transition: border-color var(--transition);
 }
 
 a.post-karte:hover {
-  border-color: #444;
+  border-color: var(--accent);
 }
 
 a.post-karte .post-datum {
-  color: #888888;
+  color: var(--text-secondary);
   font-size: 0.85rem;
 }
 
 a.post-karte h3 {
-  color: #ffffff;
+  color: var(--text);
   margin: 8px 0 10px 0;
   font-size: 1.1rem;
 }
 
 a.post-karte p {
-  color: #888888;
+  color: var(--text-secondary);
   font-size: 0.9rem;
   line-height: 1.5;
   margin: 0 0 15px 0;
 }
 
 a.post-karte .post-link {
-  color: #4a9eff;
+  color: var(--accent);
   font-size: 0.9rem;
 }
 
@@ -199,15 +234,15 @@ article {
 }
 
 article h2 {
-  color: #ffffff;
+  color: var(--text);
   font-size: 1.5rem;
   margin: 40px 0 15px 0;
-  border-left: 3px solid #4a9eff;
+  border-left: 3px solid var(--accent);
   padding-left: 15px;
 }
 
 article p {
-  color: #aaaaaa;
+  color: var(--text-secondary);
   font-size: 1rem;
   margin: 0 0 20px 0;
 }
@@ -215,7 +250,7 @@ article p {
 article img {
   width: 100%;
   border-radius: 8px;
-  border: 1px solid #222;
+  border: 1px solid var(--bg-secondary);
   margin: 20px 0;
 }
 
@@ -245,7 +280,7 @@ header, article {
   width: 12px;
   height: 12px;
   border-radius: 2px;
-  background-color: #1a1a1a;
+  background-color: var(--bg-secondary);
   cursor: pointer;
   transition: opacity 0.1s;
 }
@@ -255,20 +290,20 @@ header, article {
 }
 
 .level-0 { background-color: #1a1a1a; }
-.level-1 { background-color: #0e4429; }
-.level-2 { background-color: #006d32; }
-.level-3 { background-color: #26a641; }
-.level-4 { background-color: #39d353; }
+.level-1 { background-color: #0d4a02; }
+.level-2 { background-color: #137a04; }
+.level-3 { background-color: #1dbb06; }
+.level-4 { background-color: #2CFF05; }
 
 #github-tooltip {
   display: none;
   position: fixed;
-  background-color: #2a2a2a;
-  color: #ffffff;
+  background-color: var(--bg-secondary);
+  color: var(--text);
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 0.8rem;
-  border: 1px solid #444;
+  border: 1px solid var(--bg-tertiary);
   pointer-events: none;
   z-index: 100;
 }
@@ -282,14 +317,13 @@ header, article {
 
 .monat-label {
   font-size: 0.75rem;
-  color: #888888;
+  color: var(--text-secondary);
   min-width: 12px;
 }
 
 /* Responsive Design Mobile */
 @media (max-width: 768px) {
 
-  /* Navigation */
   nav {
     padding: 15px 20px;
     flex-wrap: wrap;
@@ -300,7 +334,6 @@ header, article {
     gap: 15px;
   }
 
-  /* Hero */
   header {
     padding: 60px 20px;
   }
@@ -309,17 +342,14 @@ header, article {
     font-size: 2rem;
   }
 
-  /* Sektionen */
   section {
     padding: 60px 20px;
   }
 
-  /* Projekte */
   #projekte-container {
     grid-template-columns: 1fr;
   }
 
-  /* GitHub Chart */
   #github-container {
     overflow-x: auto;
   }
@@ -328,16 +358,15 @@ header, article {
   #github-monate {
     min-width: 750px;
   }
-  /* Article Blog Post */
+
   article {
     padding: 40px 20px;
   }
-
 }
 
 /* Footer */
 footer {
-  border-top: 1px solid #222;
+  border-top: 1px solid var(--bg-secondary);
   padding: 30px 60px;
   margin-top: 60px;
 }
@@ -349,7 +378,7 @@ footer {
 }
 
 footer span {
-  color: #555555;
+  color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
@@ -359,13 +388,14 @@ footer span {
 }
 
 #footer-links a {
-  color: #555555;
+  color: var(--text-secondary);
   text-decoration: none;
   font-size: 0.9rem;
+  transition: color var(--transition);
 }
 
 #footer-links a:hover {
-  color: #aaaaaa;
+  color: var(--text);
 }
 
 /* Footer Mobile */
@@ -382,7 +412,7 @@ footer span {
 }
 
 .bild-beschriftung {
-  color: #555555;
+  color: var(--text-secondary);
   font-size: 0.85rem;
   text-align: center;
   margin-top: -10px !important;
@@ -403,13 +433,13 @@ footer span {
   flex-wrap: wrap;
 }
 
-/* Profilbild
+/* Profilbild – einkommentieren wenn du eins hast:
 .about-avatar {
   width: 120px;
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #4a9eff;
+  border: 3px solid var(--accent);
   flex-shrink: 0;
 }
 */
@@ -417,11 +447,12 @@ footer span {
 .about-intro h1 {
   margin: 0 0 0.4rem;
   font-size: 1.8rem;
+  color: var(--text);
 }
 
 .about-intro p {
   margin: 0;
-  color: #a1a1aa;
+  color: var(--text-secondary);
   font-size: 1rem;
 }
 
@@ -431,7 +462,7 @@ footer span {
 
 .about-section h2 {
   font-size: 1.1rem;
-  color: #4a9eff;
+  color: var(--accent-2);
   margin-bottom: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -439,7 +470,7 @@ footer span {
 
 .about-section p {
   line-height: 1.7;
-  color: #c0c0c0;
+  color: var(--text-secondary);
 }
 
 .skills-grid {
@@ -449,9 +480,9 @@ footer span {
 }
 
 .skill-tag {
-  background: #1e1e1e;
-  border: 1px solid #2c2c2e;
-  color: #e0e0e0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--accent);
+  color: var(--accent);
   padding: 0.35rem 0.8rem;
   border-radius: 20px;
   font-size: 0.85rem;
@@ -461,7 +492,7 @@ footer span {
   list-style: none;
   padding: 0;
   margin: 0;
-  border-left: 2px solid #2c2c2e;
+  border-left: 2px solid var(--bg-secondary);
   padding-left: 1.2rem;
 }
 
@@ -474,7 +505,7 @@ footer span {
   content: "";
   width: 10px;
   height: 10px;
-  background: #4a9eff;
+  background: var(--accent-2);
   border-radius: 50%;
   position: absolute;
   left: -1.65rem;
@@ -483,17 +514,17 @@ footer span {
 
 .timeline .year {
   font-size: 0.8rem;
-  color: #4a9eff;
+  color: var(--accent-2);
   margin-bottom: 0.2rem;
 }
 
 .timeline .title {
   font-weight: 600;
-  color: #e0e0e0;
+  color: var(--text);
 }
 
 .timeline .desc {
   font-size: 0.9rem;
-  color: #a1a1aa;
+  color: var(--text-secondary);
   margin-top: 0.2rem;
 }
