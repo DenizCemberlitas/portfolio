@@ -10,7 +10,7 @@ async function loadRepos() {
 
     repos.forEach(repo => {
         const card = document.createElement("div");
-        card.classList.add("projekt-karte");
+        card.classList.add("projekt-karte", "scroll-hidden");
 
         card.innerHTML = `
             <h3>${repo.name}</h3>
@@ -34,7 +34,6 @@ async function ladeContributions() {
   const monateDiv = document.getElementById("github-monate");
   const tooltip = document.getElementById("github-tooltip");
 
-  // Wochen gruppieren
   const wochen = [];
   let aktuelleWoche = [];
 
@@ -46,12 +45,10 @@ async function ladeContributions() {
     }
   });
 
-  // Letzte unvollständige Woche auch hinzufügen
   if (aktuelleWoche.length > 0) {
     wochen.push(aktuelleWoche);
   }
 
- // Monats-Labels berechnen - nur EINMAL pro Monat
   let letzterMonat = "";
   let monatsStartIndex = 0;
 
@@ -59,7 +56,6 @@ async function ladeContributions() {
     const monat = new Date(woche[0].date).toLocaleString("de-DE", { month: "short" });
 
     if (monat !== letzterMonat) {
-      // Vorherigen Monat abschließen
       if (letzterMonat !== "") {
         const anzahlWochen = index - monatsStartIndex;
         const label = document.createElement("div");
@@ -73,7 +69,6 @@ async function ladeContributions() {
     }
   });
 
-  // Letzten Monat noch hinzufügen
   const letzteAnzahl = wochen.length - monatsStartIndex;
   const letztesLabel = document.createElement("div");
   letztesLabel.classList.add("monat-label");
@@ -81,7 +76,6 @@ async function ladeContributions() {
   letztesLabel.textContent = letzterMonat;
   monateDiv.appendChild(letztesLabel);
   
-  // Wochen rendern
   wochen.forEach((woche) => {
     const wochenDiv = document.createElement("div");
     wochenDiv.classList.add("chart-woche");
@@ -111,9 +105,9 @@ async function ladeContributions() {
 ladeContributions();
 
 function loadNav(){
-
-    const inPosts = window.location.pathname.includes("/posts/");
-    const basis = inPosts ? "../" : "";
+    const inSubfolder = window.location.pathname.includes("/posts/") || 
+                        window.location.pathname.includes("/projekt-posts/");
+    const basis = inSubfolder ? "../" : "";
 
     const nav = document.querySelector("nav");
     nav.innerHTML = `
@@ -128,3 +122,28 @@ function loadNav(){
 }
 
 loadNav();
+
+// === Scroll-Animationen ===
+function initScrollAnimations() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("scroll-visible");
+        observer.unobserve(entry.target); // einmal reingeglitten → fertig
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  // Alle animierbaren Elemente beobachten
+  document.querySelectorAll(
+    "section, .post-karte, .projekt-karte, article h2, .about-section, .skill-tag"
+  ).forEach(el => {
+    el.classList.add("scroll-hidden");
+    observer.observe(el);
+  });
+}
+
+// Erst nach dem Laden starten damit Repo-Karten auch erfasst werden
+window.addEventListener("load", initScrollAnimations);

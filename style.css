@@ -123,8 +123,7 @@ header p {
 .btn-secondary:hover {
   border-color: #BF00FF;
   color: #BF00FF;
-  box-shadow: 0 0 10px rgba(191, 0, 255, 0.5);
-  box-shadow: 0 0 12px #BF00FF, 0 0 30px rgba(191, 0, 255, 0.5);
+  box-shadow: 0 0 12px #BF00FF, 0 0 30px rgba(191, 0, 255, 0.4);
 }
 
 /* Hero Buttons Mobile */
@@ -435,7 +434,7 @@ footer span {
   flex-wrap: wrap;
 }
 
-/* Profilbild
+/* Profilbild – einkommentieren wenn du eins hast:
 .about-avatar {
   width: 120px;
   height: 120px;
@@ -585,4 +584,16 @@ a.post-karte:hover {
 }
 .logo:hover {
   text-shadow: 0 0 10px rgba(44, 255, 5, 0.6);
+}
+
+/* === Scroll-Animationen === */
+.scroll-hidden {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
