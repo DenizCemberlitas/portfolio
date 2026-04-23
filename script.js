@@ -112,7 +112,7 @@ ladeContributions();
 
 function loadNav(){
 
-    const inPosts = window.location.pathname.includes("/posts/");
+    const inPosts = window.location.pathname.includes("/posts/") || window.location.pathname.includes("/projekt-posts/");
     const basis = inPosts ? "../" : "";
 
     const nav = document.querySelector("nav");
