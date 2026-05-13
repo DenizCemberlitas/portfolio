@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AMP Game Panel Setup – Deniz</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+
+    <nav></nav>
+
+    <header>
+      <span class="post-datum">Mai 2026</span>
+      <h1>Amp Game Panel Setup – Mein Gameserver Grundgerüst</h1>
+      <p>Wie ich Amp auf meinem Proxmox Server eingerichtet und meinen erste Instanze zum Laufen gebracht habe.</p>
+    </header>
+
+    <article>
+
+      <h2>Die Hardware</h2>
+      <p>Als Basis für meinen AMP Game Panel Server nutze ich denselben HP Mini PC wie für Proxmox – 
+        ein AMD Ryzen 5 PRO 4650GE mit 32GB RAM. AMP läuft als LXC Container direkt unter Proxmox, 
+        wodurch es die Hardware effizient mit anderen Diensten teilt ohne eine eigene VM zu benötigen.
+      </p>
+
+      <h2>Was ist AMP Game Panel?</h2>
+      <p>AMP (Application Management Panel) ist ein Web-Interface zur Verwaltung von Game Servern. 
+        Statt sich per SSH einzuloggen und Befehle manuell einzugeben, bietet AMP eine übersichtliche 
+        Oberfläche um Server zu starten, stoppen und zu konfigurieren. Für jeden Game Server wird eine 
+        eigene Instanz angelegt – mit Live-Metriken wie CPU-Auslastung, RAM-Verbrauch, aktive Spieler 
+        und TPS (Ticks per Second). Aktuell laufen bei mir zwei Minecraft Server, ein Palworld Server 
+        und ein Hytale Test-Server als Instanzen.
+      </p>
+
+      <a href="img-sources/amp-ads-dashboard.png" target="_blank">
+        <img src="img-sources/amp-ads-dashboard.png" alt="Amp Dashboard Übersicht" />
+      </a>
+      <p class="bild-beschriftung">Das Amp Web-Interface – zum Vergrößern klicken</p>
+      
+      <h2>Installation</h2>
+      <p>AMP wird als LXC Container in Proxmox eingerichtet. Nach dem Erstellen eines Debian-Containers 
+        wird AMP über ein offizielles Installationsskript eingerichtet. Das Panel ist danach über den 
+        Browser unter <code>https://IP-ADRESSE:8080</code> erreichbar und führt beim ersten Start durch die 
+        Grundkonfiguration. Neue Game Server lassen sich dann mit wenigen Klicks als Instanz 
+        hinzufügen – AMP lädt die Server-Dateien automatisch herunter und konfiguriert Ports 
+        und RAM-Limits.
+      </p>
+
+      <a href="img-sources/amp-instance-dashboard.png" target="_blank">
+        <img src="img-sources/amp-instance-dashboard.png" alt="Amp Instance Übersicht" />
+      </a>
+      <p class="bild-beschriftung">Das Amp Web-Interface in einer Instanz – zum Vergrößern klicken</p>
+
+      <h2>Port Forwarding mit Playit.gg</h2>
+      <p>Damit Freunde von außen auf die Game Server zugreifen können, braucht man normalerweise 
+        Port Forwarding am Router – was bei vielen Internetanschlüssen entweder nicht möglich oder 
+        zu kompliziert ist. Als Lösung nutze ich Playit.gg, einen kostenlosen Tunnel-Dienst speziell 
+        für Game Server.
+        <br>
+        Playit läuft als kleines Programm im Container und erstellt einen öffentlichen Endpunkt, 
+        über den Spieler sich verbinden können – ohne dass der Router angefasst werden muss. 
+        AMP verwaltet den Server, Playit macht ihn von außen erreichbar. Die Kombination funktioniert 
+        zuverlässig und ist auch für Anschlüsse ohne feste IP oder mit CGNAT geeignet.
+      </p>
+
+      <h2>Nächste Schritte</h2>
+      <p>Der nächste geplante Dienst in meinem Homelab ist Home Assistant – eine Open-Source Plattform 
+        zur Heimautomatisierung. Home Assistant läuft ebenfalls gut als LXC Container unter Proxmox 
+        und erlaubt es, Smart-Home-Geräte zentral zu steuern und zu automatisieren, ohne auf Cloud-
+        Dienste angewiesen zu sein. Die Einrichtung und erste Automatisierungen werde ich hier 
+        dokumentieren.
+      </p>
+
+    </article>
+
+    <footer>
+      <div id="footer-inhalt">
+        <span>© 2026 Deniz Cemberlitas</span>
+        <div id="footer-links">
+          <a href="https://github.com/DenizCemberlitas" target="_blank">GitHub</a>
+          <a href="mailto:denizc.317@outlook.com">Kontakt</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>
