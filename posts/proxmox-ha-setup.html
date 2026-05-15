@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Assistant Setup – Deniz</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+
+    <nav></nav>
+
+    <header>
+      <span class="post-datum">Mai 2026</span>
+      <h1>Home Assistant Setup – Mein Smart Home Grundgerüst</h1>
+      <p>Wie ich Home Assistan auf meinem Proxmox Server eingerichtet und mein Smart Home ein wenig eingerichtet habe.</p>
+    </header>
+
+    <article>
+
+      <h2>Die Hardware</h2>
+      <p>Auch Home Assistant läuft auf demselben HP Mini PC mit AMD Ryzen 5 PRO 4650GE und 32GB RAM – 
+        als LXC Container unter Proxmox. Da Home Assistant sehr ressourcenschonend ist, teilt es sich 
+        die Hardware problemlos mit AMP und anderen Diensten.
+      </p>
+
+      <h2>Was ist Home Assistant?</h2>
+      <p>Home Assistant ist eine Open-Source Plattform zur Heimautomatisierung. Sie läuft lokal im 
+        eigenen Netzwerk und ist nicht auf externe Cloud-Dienste angewiesen. Über ein übersichtliches 
+        Web-Interface lassen sich Smart-Home-Geräte verschiedenster Hersteller zentral steuern, 
+        überwachen und automatisieren.
+        <br>
+        Bei mir nutze ich Home Assistant unter anderem um meinen Gaming-PC per Wake-on-LAN remote 
+        einzuschalten. So kann ich den PC aus dem Standby holen und mich anschließend über 
+        Moonlight und Sunshine per Gamestream auf ihn verbinden – ohne dass der PC dauerhaft 
+        laufen muss. Zusätzlich habe ich mir ein eigenes Dashboard gebaut, das mir alle wichtigen 
+        Informationen und Steuerelemente auf einen Blick zeigt.
+      </p>
+
+      <a href="img-sources/ha-dashboard.png" target="_blank">
+        <img src="img-sources/ha-dashboard.png" alt="HA Dashboard Übersicht" />
+      </a>
+      <p class="bild-beschriftung">Das Home Assistant Web-Interface – zum Vergrößern klicken</p>
+      
+      <h2>Installation</h2>
+      <p>Home Assistant wird als LXC Container in Proxmox eingerichtet. Die einfachste Methode ist 
+        das Community-Script von tteck (community-scripts.github.io), das den Container automatisch 
+        erstellt und Home Assistant installiert. Nach wenigen Minuten ist das Panel über den Browser 
+        unter <code>http://IP-ADRESSE:8123</code> erreichbar und führt durch die Ersteinrichtung.
+      </p>
+
+      <h2>Nächste Schritte</h2>
+      <p>Das Setup wächst langsam aber stetig. Aktuell arbeite ich daran, mich tiefer in das 
+        Automatisierungssystem von Home Assistant einzuarbeiten – Regeln die automatisch auf 
+        bestimmte Ereignisse reagieren, ohne dass man manuell eingreifen muss. Geplant ist zum 
+        Beispiel, den PC automatisch herunterzufahren wenn keine Moonlight-Verbindung mehr aktiv ist. 
+        Was davon umgesetzt wird und wie, werde ich hier dokumentieren.
+      </p>
+
+    </article>
+
+    <footer>
+      <div id="footer-inhalt">
+        <span>© 2026 Deniz Cemberlitas</span>
+        <div id="footer-links">
+          <a href="https://github.com/DenizCemberlitas" target="_blank">GitHub</a>
+          <a href="mailto:denizc.317@outlook.com">Kontakt</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>
