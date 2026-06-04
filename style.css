@@ -22,6 +22,7 @@
   --radius: 12px;
   --shadow: 0 4px 16px rgba(44, 255, 5, 0.08);
   --transition: 0.25s ease;
+  --highlight: #2CFF05;
 }
 
 /* Body */
@@ -243,10 +244,30 @@ article h2 {
   padding-left: 15px;
 }
 
+article h3 {
+  color: var(--text);
+}
+
 article p {
   color: var(--text-secondary);
   font-size: 1rem;
   margin: 0 0 20px 0;
+}
+
+article ul {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin: 0 0 20px 0;
+}
+
+article td {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+article th {
+  border-bottom: 1px solid #ddd;
 }
 
 article img {
@@ -585,4 +606,8 @@ a.post-karte:hover {
 }
 .logo:hover {
   text-shadow: 0 0 10px rgba(44, 255, 5, 0.6);
+}
+
+.highlight {
+    color: var(--highlight);
 }

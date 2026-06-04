@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logistik Web App – Deniz</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+
+    <nav></nav>
+
+    <header>
+      <span class="post-datum">2026</span>
+      <h1>Logistik Web App</h1>
+      <p>Eine selbst entwickelte Lagerverwaltungs-Web-App – gebaut mit Vanilla JavaScript und Node.js.</p>
+    </header>
+
+    <article>
+
+        <h2>Was die App kann</h2>
+        <ul>
+            <li>Produkte anlegen mit Name, Kategorie, Einheit (z.B. m², Palette, Karton), Bestand, Mindestbestand und Lagerort</li>
+            <li>Alle Produkte in einer übersichtlichen Tabelle anzeigen</li>
+            <li>Produkte löschen</li>
+            <li><b>Automatische Mindestbestand-Warnung:</b> Sobald der aktuelle Bestand unter den Mindestbestand fällt, wird die Zeile rot markiert – ohne dass der User etwas tun muss</li>
+        </ul>
+        <a href="img/logistik-1.png" target="_blank">
+            <img src="img/logistik-1.png" alt="Logistik Web App Übersicht" />
+        </a>
+        <p class="bild-beschriftung">Logistik Web App Übersicht – zum Vergrößern klicken</p>
+
+        <h2>Wie der Code Funktioniert</h2>
+        <h3>Backend (Node.js + Express)</h3>
+        <p>Der Server läuft in <span class="highlight">server.js</span> und nutzt drei npm-Pakete:</p>
+        <ul>
+            <li><b>express</b> – das Web-Framework, das HTTP-Anfragen entgegennimmt und an die richtigen Routen weiterleitet. Es stellt auch <span class="highlight">express.static()</span> bereit, womit der <span class="highlight">public/</span>-Ordner direkt ausgeliefert wird, und <span class="highlight">express.json()</span>, das eingehende JSON-Anfragen automatisch in JavaScript-Objekte umwandelt.</li>
+            <li><b>cors</b> – steht für Cross-Origin Resource Sharing. Ohne dieses Paket würde der Browser Anfragen vom Frontend ans Backend blockieren, weil beide auf unterschiedlichen Ursprüngen laufen. CORS erlaubt diese Verbindung explizit.</li>
+            <li><b>better-sqlite3</b> – eine synchrone SQLite-Bibliothek für Node.js. Anders als andere Datenbank-Treiber ist sie vollständig synchron, was den Code deutlich einfacher und lesbarer macht – kein <span class="highlight">async/await</span> nötig auf der Datenbankebene.</li>
+        </ul>
+        <p>Die Routen sind in <span class="highlight">routes/produkte.js</span> und <span class="highlight">routes/buchungen.js</span> ausgelagert. Jede Datei erstellt einen Express-Router mit fünf Endpunkten:</p>
+        <table>
+            <tr>
+                <th>Methode</th>
+                <th>Pfad</th>
+                <th>Funktion</th>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td><span class="highlight">/api/produkte</span></td>
+                <td>Alle Produkte abrufen</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td><span class="highlight">/api/produkte/:id</span></td>
+                <td>Ein einzelnes Produkt abrufen</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td><span class="highlight">/api/produkte</span></td>
+                <td>Neues Produkt anlegen</td>
+            </tr>
+            <tr>
+                <td>PUT</td>
+                <td><span class="highlight">/api/produkte/:id</span></td>
+                <td>Produkt aktualisieren</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td><span class="highlight">/api/produkte/:id</span></td>
+                <td>Produkt löschen</td>
+            </tr>
+        </table>
+
+        <h3>Datenbank (SQLite)</h3>
+        <p>In <span class="highlight">database.js</span> wird beim Start der App automatisch eine Datei <span class="highlight">lager.db</span> erstellt, falls sie noch nicht existiert. Die zwei Tabellen <span class="highlight">produkte</span> und <span class="highlight">buchungen</span> werden mit <span class="highlight">CREATE TABLE IF NOT EXISTS</span> angelegt – das verhindert Fehler beim Neustart. Die <span class="highlight">buchungen</span>-Tabelle hat einen <span class="highlight">FOREIGN KEY</span> auf produkte(id), der sicherstellt dass nur Buchungen zu existierenden Produkten angelegt werden können.</p>
+
+        <h3>Frontend (Vanilla JS)</h3>
+        <p>Das Frontend kommuniziert per <span class="highlight">fetch()</span> mit der REST-API. Beim Laden der Seite wird <span class="highlight">loadProdukte()</span> aufgerufen, die alle Produkte vom Backend holt und dynamisch als Tabellenzeilen ins HTML einfügt. Für jedes Produkt wird geprüft ob <span class="highlight">bestand < mindestbestand</span> – falls ja, bekommt die Zeile die CSS-Klasse <span class="highlight">warnung</span> und wird rot markiert. Nach jedem Hinzufügen oder Löschen wird <span class="highlight">loadProdukte()</span> erneut aufgerufen damit die Tabelle immer aktuell ist.</p>
+        
+        <h2>Entwicklungsprozess – was dabei gelernt wurde</h2>
+        <p>Ursprünglich war geplant, MongoDB als Datenbank zu nutzen und selbst auf einem Proxmox-Homelab zu hosten. Nach der Installation per Community-Script stellte sich heraus, dass MongoDB 8.0 einen Inkompatibilitätsfehler mit dem PVE-Kernel wirft (<span class="highlight">Linux kernel versions 6.19 and newer</span>), obwohl der tatsächlich verwendete Kernel 7.0.2-pve ist. Verschiedene Workarounds wie das Überschreiben des Kernel-Checks wurden versucht, führten aber zu weiteren Fehlern. Die Entscheidung fiel dann bewusst auf SQLite, da es für ein Projekt dieser Größe die ehrlichere Wahl ist – keine externe Datenbank-Instanz nötig, alles in einer einzigen <span class="highlight">.db</span>-Datei, und trotzdem vollständig relationale SQL-Syntax mit Foreign Keys.<br>
+        Ein weiterer Entwicklungsschritt war die Umstellung der Produktanzeige von einfachen <span class="highlight">&lt;div&gt;</span>-Elementen auf eine HTML-<span class="highlight">&lt;table&gt;</span>. Da jedes Produkt mehrere Felder hat, war eine Tabelle die sauberere Lösung für die Übersichtlichkeit. Das erforderte eine Anpassung im JavaScript: statt <span class="highlight">createElement("div")</span> werden jetzt <span class="highlight">&lt;tr&gt;</span>- und <span class="highlight">&lt;td&gt;</span>-Elemente erstellt und dynamisch zusammengesetzt.</p>
+        
+        <h2>Mögliche zukünftige Erweiterungen</h2>
+        <ul>
+            <li>Buchungshistorie: Jede Bestandsänderung (Wareneingang / Warenausgang) als Buchung in der <span class="highlight">buchungen</span>-Tabelle loggen – so entsteht ein vollständiger Verlauf wann welche Menge bewegt wurde</li>
+            <li>Bestandsänderung über UI: Statt nur Produkte anzulegen, direkt den Bestand erhöhen oder verringern und die Änderung als Buchung speichern</li>
+            <li>Suchfunktion: Produkte nach Name, Kategorie oder Lagerort filtern</li>
+            <li>Authentifizierung: Login-System damit nicht jeder Zugriff auf das Lager hat</li>
+            <li>CSV-Export: Alle Produkte als CSV-Datei exportieren für die Weiterverarbeitung in Excel oder SAP</li>
+            <li>Barcode-Scanner: Per Kamera einen Barcode scannen und das Produkt automatisch identifizieren</li>
+            <li>Dashboard: Übersichtsseite mit Statistiken – wie viele Produkte unter Mindestbestand, Gesamtwert des Lagers, etc.</li>
+        </ul>
+
+        <a href="img/logistik-2.png" target="_blank">
+            <img src="img/logistik-2.png" alt="Logistik Web App Übersicht" />
+        </a>
+        <p class="bild-beschriftung">Logistik Web App Übersicht mit mindestbestand Funktion. – zum Vergrößern klicken</p>
+
+        <h2>Tech Stack</h2>
+        <p>HTML5 · CSS3 · Vanilla JavaScript · Node.js · Express.js · SQLite(better-sqlite3)</p>
+
+        <h2>Links</h2>
+        <p>
+            <a href="https://github.com/DenizCemberlitas/logistik-webapp" target="_blank" class="post-link">GitHub Repo →</a>
+        </p>
+
+    </article>
+
+    <footer>
+        <div id="footer-inhalt">
+            <span>© 2026 Deniz Cemberlitas</span>
+            <div id="footer-links">
+                <a href="https://github.com/DenizCemberlitas" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>
