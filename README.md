@@ -118,4 +118,4 @@ portfolio/
 
 ---
 
-*Deniz Cemberlitas · Medieninformatik (BHT Berlin) · Angehender Fachinformatiker Anwendungsentwicklung*
+*Deniz Cemberlitas · Angehender Fachinformatiker Anwendungsentwicklung*
